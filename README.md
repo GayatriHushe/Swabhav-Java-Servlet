@@ -16,4 +16,4 @@ Day 40 : 19/7/2021
 	  
 Day 41 : 20/7/2021
   - Programs : 
-      - student-mvc-app
+      - student-mvc-app-without-jdbc

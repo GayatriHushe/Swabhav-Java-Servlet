@@ -9,11 +9,11 @@
 <title>Edit Page</title>
 </head>
 <body style="background-color: pink">
-<%Student student = (Student)session.getAttribute("studentToEdit"); %>>
+<%Student student = (Student)session.getAttribute("studentToEdit"); %>
 	<h1 align="center">Edit Page</h1>
 	<form style="align-items: center;" method="POST">
 	
-		<div class="form-group">
+		<div class="form-group" hidden="true">
 			<label class="control-label col-md-2">ID</label>
 			<div class="col-md-4">
 				<input type="text" name="id" class="form-control" value=<%=student.getId() %> >
@@ -47,11 +47,5 @@
 		
 		<input type="submit" value="Save Changes" style="background-color: lightblue">
 	</form>
-
-	<script>
-		function goToHomePage() {
-			window.location.href="http://localhost:8080/student-mvc-app/home";
-		}
-	</script>
 
 </body>

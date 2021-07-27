@@ -18,8 +18,9 @@
 		Student Count :
 		<%=studentList.size()%>
 	</h2>
-	<a href="add"><button style="background-color: lightblue">Add
-			Student</button></a>
+	<a href="add" <%session.setAttribute("operation", "add");%>>
+		<button style="background-color: lightblue">Add Student</button>
+	</a>
 
 	<table width="1000" align="center">
 		<tr bgcolor="orange" align="center">
@@ -40,28 +41,29 @@
 			<td><%=student.getName()%></td>
 			<td><%=student.getCgpa()%></td>
 			<td><%=student.getLocation()%></td>
-			<td><%
-			
-			out.print("<form method = 'POST'>");
-			out.print("<input type = 'hidden' name = 'operation' value = 'edit'>");
-			out.print("<input type = 'hidden' name = 'id' value = '" + student.getId() + "'>");
-			out.print("<input type = 'hidden' name = 'name' value = '" + student.getName() + "'>");
-			out.print("<input type = 'hidden' name = 'rollNo' value = '" + student.getRollNo() + "'>");
-			out.print("<input type = 'hidden' name = 'cgpa' value = '" + student.getCgpa() + "'>");
-			out.print("<input type = 'hidden' name = 'location' value = '" + student.getLocation() + "'>");
-			out.print("<button type = 'submit' class = 'btn btn-warning' > Edit </button>");
-			out.print("</form>");
-			%></td>
 			<td>
-			<%
-			out.print("<form method = 'POST'>");
-			out.print("<input type = 'hidden' name = 'operation' value = 'delete'>");
-			out.print("<input type = 'hidden' name = 'id' value = '" + student.getId() + "'>");
-			out.print("<button type = 'submit' class = 'btn btn-warning' > Delete </button>");
-			out.print("</form>");
-			%>
+				<%
+				out.print("<form method = 'POST'>");
+				out.print("<input type = 'hidden' name = 'operation' value = 'edit'>");
+				out.print("<input type = 'hidden' name = 'id' value = '" + student.getId() + "'>");
+				out.print("<input type = 'hidden' name = 'name' value = '" + student.getName() + "'>");
+				out.print("<input type = 'hidden' name = 'rollNo' value = '" + student.getRollNo() + "'>");
+				out.print("<input type = 'hidden' name = 'cgpa' value = '" + student.getCgpa() + "'>");
+				out.print("<input type = 'hidden' name = 'location' value = '" + student.getLocation() + "'>");
+				out.print("<button type = 'submit' class = 'btn btn-warning' style='background-color:orange;' > Edit </button>");
+				out.print("</form>");
+				%>
 			</td>
-			
+			<td>
+				<%
+				out.print("<form method = 'POST'>");
+				out.print("<input type = 'hidden' name = 'operation' value = 'delete'>");
+				out.print("<input type = 'hidden' name = 'id' value = '" + student.getId() + "'>");
+				out.print("<button type = 'submit' class = 'btn btn-warning' style='background-color:orange;' > Delete </button>");
+				out.print("</form>");
+				%>
+			</td>
+
 
 		</tr>
 		<%
@@ -69,5 +71,12 @@
 		%>
 
 	</table>
-	
+
+	<%			out.print("<form method = 'POST'>");
+				out.print("<input type = 'hidden' name = 'operation' value = 'logout'>");
+				out.print("<button type = 'submit' class = 'btn btn-warning' style='background-color:orange;' > Logout </button>");
+				out.print("</form>");
+	%>
+
+	</script>
 </body>

@@ -47,7 +47,7 @@ public class EditController extends HttpServlet {
 		service.updateStudent(student);
         
         
-		response.sendRedirect("http://localhost:8080/student-mvc-app/home"); 
+		response.sendRedirect("http://localhost:8080/student-mvc-app-with-jdbc/home"); 
 	}
 
 }

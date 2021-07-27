@@ -1,20 +1,15 @@
 package com.techlab.controllers;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.techlab.model.Student;
-import com.techlab.repository.StudentRepository;
 import com.techlab.service.IStudentService;
 import com.techlab.service.StudentDbService;
-import com.techlab.service.StudentServiceSingleton;
 
 
 @WebServlet("/add")
@@ -38,11 +33,11 @@ public class AddController extends HttpServlet {
 		String name =request.getParameter("name");
 		double cgpa =Double.parseDouble(request.getParameter("cgpa"));
 		String location =request.getParameter("location");
+		
 		IStudentService service= new StudentDbService(); 
-
 		service.addStudent(new Student(rollNo, name, cgpa, location));
 
-		response.sendRedirect("http://localhost:8080/student-mvc-app/home"); 
+		response.sendRedirect("http://localhost:8080/student-mvc-app-with-jdbc/home"); 
 	}
 
 }

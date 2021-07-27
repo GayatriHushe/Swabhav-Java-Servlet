@@ -12,7 +12,7 @@ import com.techlab.model.Student;
 
 public class StudentRepository {
 
-	public static void addStudentToDb(Student student) throws SQLException, ClassNotFoundException
+	public void addStudentToDb(Student student) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/student?"+"user=root&password=root");	
@@ -26,11 +26,11 @@ public class StudentRepository {
 	    
 	    int result=ps.executeUpdate();
 	    if(result>0) {
-	      System.out.println("Row Inserted");
+	      System.out.println("Student added");
 	    }
 	}
 
-	public static ArrayList<Student> getStudentFromDb() throws ClassNotFoundException, SQLException
+	public  ArrayList<Student> getStudentFromDb() throws ClassNotFoundException, SQLException
 	{
 		ArrayList<Student> students=new ArrayList<Student>();
 		Class.forName("com.mysql.jdbc.Driver");
@@ -40,6 +40,7 @@ public class StudentRepository {
 		ResultSet rs=stmt.executeQuery("SELECT * FROM STUDENT_INFO ;");
 		while(rs.next())
 		{
+			System.out.println("Students : ");
 			System.out.println(rs.getString(1)+" "+rs.getInt(2)+" "+rs.getString(3)+" "+rs.getDouble(4)+" "+rs.getString(5));
 			Student student=new Student(rs.getInt("ROLL_NO"),rs.getString("NAME"),rs.getDouble("CGPA"),rs.getString("LOCATION"));
 			student.setId(rs.getString("ID"));
@@ -51,7 +52,7 @@ public class StudentRepository {
 	}
 	
 	
-	public static void updateStudentToDb(Student student) throws ClassNotFoundException, SQLException
+	public void updateStudentToDb(Student student) throws ClassNotFoundException, SQLException
 	{
 		System.out.println("repo : " + student);
 		int rowUpdated;
@@ -73,9 +74,8 @@ public class StudentRepository {
 	    
 	}
 	
-	public static Student selectStudent(String id) throws ClassNotFoundException, SQLException {
+	public Student selectStudent(String id) throws ClassNotFoundException, SQLException {
 		Student student=null;
-		System.out.println("repo : " + id);
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/student?"+"user=root&password=root");	
@@ -98,7 +98,7 @@ public class StudentRepository {
 		return student;
 	}
 	
-	public static void deleteStudentFromDb(String id) throws ClassNotFoundException, SQLException
+	public void deleteStudentFromDb(String id) throws ClassNotFoundException, SQLException
 	{
 		int rowDeleted;
 		Class.forName("com.mysql.jdbc.Driver");
@@ -109,6 +109,11 @@ public class StudentRepository {
 		ps.setString(1, id);
 		
 		rowDeleted=ps.executeUpdate();
+		if(rowDeleted>0)
+			System.out.println("Row deleted");
+		else
+			System.out.println("Row not deleted");
+		con.close();
 	}
 	
 }
